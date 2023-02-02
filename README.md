@@ -45,3 +45,15 @@ How to Use:
 
 - How to use ZeroMQ Pub/Sub Pattern in Node.js: https://dev.to/franciscomendes10866/how-to-use-zeromq-pub-sub-pattern-in-node-js-2i62
 - How to use ZeroMQ Pub/Sub Pattern in Golang: https://dev.to/franciscomendes10866/how-to-use-zeromq-pub-sub-pattern-in-golang-4n3
+
+### C/S (client-server)
+
+![](img/cs.png)
+
+### Pub/Sub (publish-subscribe)
+
+![](img/pub_sub.png)
+
+### xPub/xSub (xPublish-xSubscribe)
+
+![](img/xpub_xsub.png)
