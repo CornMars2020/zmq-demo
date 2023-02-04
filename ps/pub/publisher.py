@@ -11,7 +11,7 @@ if len(sys.argv) > 1:
 
 app = Flask(__name__)
 context = zmq.Context()
-socket = context.socket(zmq.PUB)
+p = context.socket(zmq.PUB)
 
 @app.route('/', methods={"POST"})
 def hello():
@@ -19,9 +19,9 @@ def hello():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json'):
       message = request.json
-      socket.send("pubsub %s" % (message))
+      p.send("pubsub %s" % (message))
     return 'Sent to the subscriber/worker.'
 
 if __name__ == "__main__":
-  socket.bind("tcp://127.0.0.1:%s" % port)
+  p.bind("tcp://127.0.0.1:%s" % port)
   app.run(debug=True, port=3000)

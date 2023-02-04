@@ -13,8 +13,26 @@ Need libzmq for Golang: https://github.com/zeromq/libzmq
 - DEB: `http://software.opensuse.org/download.html?project=network%3Amessaging%3Azeromq%3Arelease-stable&package=libzmq3-dev`
 - RPM: `https://software.opensuse.org/download.html?project=network%3Amessaging%3Azeromq%3Arelease-stable&package=zeromq-devel`
 
-- Ubuntu: `apt install pkg-config libczmq4 libczmq-dev -y`
-- MacOS: `brew install pkg-config zeromq`
+CentOS 7
+
+```bash
+cd /etc/yum.repos.d/
+sudo wget https://download.opensuse.org/repositories/network:messaging:zeromq:release-stable/CentOS_7/network:messaging:zeromq:release-stable.repo
+sudo yum install zeromq-devel
+```
+
+Ubuntu 22.04
+
+```bash
+echo 'deb http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/network:messaging:zeromq:release-stable.list
+curl -fsSL https://download.opensuse.org/repositories/network:messaging:zeromq:release-stable/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/network_messaging_zeromq_release-stable.gpg > /dev/null
+sudo apt update
+sudo apt install pkg-config libzmq3-dev libczmq4 libczmq-dev -y
+```
+
+MacOS
+
+`brew install pkg-config zeromq`
 
 ### Test Env
 
@@ -30,11 +48,13 @@ Need libzmq for Golang: https://github.com/zeromq/libzmq
 
 ### Golang cross build
 
-MacOS: `brew install FiloSottile/musl-cross/musl-cross`
+MacOS: `brew install FiloSottile/musl-cross/musl-cross mingw-w64`
 
 CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC=x86_64-linux-musl-gcc CGO_LDFLAGS="-static" go build -a -v -o BIN_NAME .
 
 PS: Still not very good. Need to config LIBRARY_PATH, LD_LIBRARY_PATH, DYLD_LIBRARY_PATH and provide the cpp header files.
+
+see: https://segmentfault.com/a/1190000038938300
 
 ## Related Docs
 

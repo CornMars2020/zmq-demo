@@ -10,13 +10,11 @@ if len(sys.argv) > 1:
     int(port)
 
 context = zmq.Context()
-socket = context.socket(zmq.REP)
-socket.bind("tcp://*:%s" % port)
-
-socket.bind("tcp://*:%s" % port)
+s = context.socket(zmq.REP)
+s.bind("tcp://*:%s" % port)
 
 while True:
-  message = socket.recv()
+  message = s.recv()
   print("Received request: ", message)
   time.sleep(1)
-  socket.send("World from %s" % port)
+  s.send("World from %s" % port)
